@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+	<title>时间对象与math对象</title>
+	<script type="text/javascript">
+		window.onload=function () {
+			var boxa=document.getElementById('box');
+			function aa(){
+				var time=new Date();
+				var timeb=new Date("2017-01-01 00:00");
+				var result=timeb-time;
+				var day=parseInt(result/1000/3600/24);
+				var hour=parseInt(result/1000/3600%24);
+				var min=parseInt(result/1000/60%60);
+				var sec=parseInt(result/1000%60);
+				boxa.innerHTML="距离2017年还有"+day+"天"+hour+"时"+min+"分"+sec+"秒";
+				setTimeout(aa,1)
+			}
+			aa();
+
+		}
+	</script>
+</head>
+<body>
+<div id="box"></div>
+
+
+<h3>时间对象</h3>
+<h4>1.new Date的方法</h4>
+<pre>
+
+var datea = new Date();
+括号中不加任何东西，则返回当时的时间，年月日。
+例如： var datea = new Date();
+			alert(datea);
+运行结果为：
+<img src="http://image18.poco.cn/mypoco/myphoto/20161211/21/18487591220161211212206050_640.jpg?347x149_130">
+括号中可以设定一定的时间。
+例如：var dateb = new Date("2012-12-03 09:00");
+			alert(dateb);
+运行结果为：
+<img src="http://image18.poco.cn/mypoco/myphoto/20161211/21/18487591220161211212436022_640.jpg?376x116_130">
+
+</pre>
+
+<h4>获取年月日时分秒星期</h4>
+<pre>
+1.获取年 
+var datea = new Date("2012-12-03 09:00");
+			 b=datea.getFullYear();
+			alert(b);
+运行结果为：
+	<img src="http://image18.poco.cn/mypoco/myphoto/20161211/21/18487591220161211213359068_640.jpg?307x115_130">
+2.获取月
+	var datea = new Date("2012-12-03 09:00");
+			 b=datea.getMonth();
+			alert(b);
+  <p style="color: red"> 注意：获取月是从下标开始的。0~11,代表1~12月。</p> 
+3.获取日期
+var datea = new Date("2012-12-03 09:00");
+			 b=datea.getDate();
+			alert(b);
+运行结果是：3
+4.获取时分秒
+时：getHours();
+分：getMinutes();
+秒:getSeconds();
+5.获取星期
+getDay() ;
+<p style="color: red;">注意：获取星期是从下标开始的。0~6,代表周日到周六。</p> 
+6.新年倒计时，代码如下：
+var boxa=document.getElementById('box');
+			function countTime(){
+				var time=new Date();
+				var timeb=new Date("2017-01-01 00:00");
+				var result=timeb-time;
+				var day=parseInt(result/1000/3600/24);
+				var hour=parseInt(result/1000/3600%24);
+				var min=parseInt(result/1000/60%60);
+				var sec=parseInt(result/1000%60);
+				boxa.innerHTML="距离2017年还有"+day+"天"+hour+"时"+min+"分"+sec+"秒";
+				setTimeout(countTime,1)
+			}
+			countTime();
+
+运行结果是：距离2017年还有20天2时4分43秒
+7.获取一个月的天数
+var dates=new Date(2013,10,1).getDate();
+            alert(dates);
+        获取的即10月份的天数
+<p style="color: red">注意：此时的10就是10月。怎么说呢，就是10月，不是下标。</p>
+</pre>
+
+<h3>Math对象</h3>
+直接上图
+<img style="display: block;" src="http://image18.poco.cn/mypoco/myphoto/20161211/22/1848759122016121122000907_640.jpg?501x536_130">
+</body>
+</html>
