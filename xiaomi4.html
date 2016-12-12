@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>事件流机制，键盘点击事件</title>
+		<script type="text/javascript">
+			
+
+		</script>
+	</head>
+	<body>
+		<h3>冒泡流与捕获流</h3>
+		<img style="display: block;" src="http://images2015.cnblogs.com/blog/402105
+			/201508/402105-20150825224811297-382732435.png" alt="" />
+			<pre>事件捕获阶段：事件从最上一级标签开始往下查找，直到捕获到事件目标(target)。
+事件冒泡阶段：事件从事件目标(target)开始，往上冒泡直到页面的最上一级标签。
+冒泡流是大多数浏览器都支持的。</pre>
+			<img style="width: 900px;height: 600px" src="https://marcello0412.github.io/summary/img/2016.12.12-01.png">
+	  <h3>HTML DOM Event 对象</h3>
+<pre>
+	(1).节点事件   "p onclick="show()"    /p"
+	
+	(2).Html DownOn事件。
+	
+	var pp=document.getElementById('pp');
+	pp.onclick=function(){alert("hello")}
+	
+    (3).HTML W3C标准事件
+    pp.addEventListener("click",clickHandler,false)
+    function clickHandler(){alert("hello")}
+     
+     为pp绑定事件监听器，事件为“click”，函数名为“clickHandler”，类型为冒泡流（false）；true为捕获流。
+    冒泡流是所有浏览器都支持的 。  
+</pre>
+<pre>
+	<img src="http://image18.poco.cn/mypoco/myphoto/20161212/19/18487591220161212193103067_640.jpg?727x718_120" alt="" />
+
+ 1.例如：显示鼠标 x y 轴坐标，并且图片跟随移动：
+
+	var img = document.getElementById('img');
+	var div2=document.getElementById('div1');
+	var div2=document.getElementById('div2')
+		window.addEventListener("mousemove",move);
+		function move(e){
+		var x=e.clientX;
+		var y=e.clientY;
+		img.style.top=y-60+"px";
+		img.style.left=x-60+"px";
+		div1.innerHTML="x:"+x;
+		div2.innerHTML="y:"+y;
+		}
+			
+			
+2.点击实现图片切换：
+
+<img src="http://image18.poco.cn/mypoco/myphoto/20161212/19/18487591220161212193835034_640.jpg?689x162_120"/>
+
+
+3.获取键盘的键值
+
+<img src="http://image18.poco.cn/mypoco/myphoto/20161212/19/18487591220161212195429031_640.jpg?644x147_120"/>
+
+4.获取验证码
+
+<img src="http://image18.poco.cn/mypoco/myphoto/20161212/20/18487591220161212201810025_640.jpg?661x504_120"/>
+</pre>
+	
+	</body> 
+</html>
