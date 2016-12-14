@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>canvas画布</title>
+</head>
+<body>
+<h3>绘制矩形</h3>
+<pre>
+	var c=document.getElementById("myCanvas");    
+	var ctx=c.getContext("2d");    //创建2d的绘制环境。
+	ctx.fillStyle="#0000ff";       //设置填充的颜色为蓝色。
+	ctx.fillRect(20,20,150,100);   //绘制矩形，起始点坐标为(20,20),矩形长度为150，宽度为100.
+    这样就绘制出一个蓝色填充矩形。
+	<img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/1848759122016121422024803_640.jpg?221x140_130">
+
+	var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    ctx.strokeStyle="#0000ff";         //strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式。
+    ctx.strokeRect(20,20,150,100);     //storke:勾勒；绘制；中风。绘制出边框为蓝色的矩形。
+        <img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214220644019_640.jpg?207x136_130">
+</pre>
+
+<h3>绘制直线</h3>
+<pre>
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.beginPath();           // beginPath() 方法开始一条路径，或重置当前的路径。就是说我要开始画了。
+ ctx.moveTo(20,20);        //把路径移动到画布中的指定点(20,20)，不创建线条
+ctx.lineTo(20,100);        //添加一个新点(200,100)，然后在画布中创建从该点到最后指定点的线条
+ctx.lineTo(70,100);
+ctx.strokeStyle="green";   //颜色为绿色。
+ctx.stroke();              //勾勒吧，挥洒吧，中风吧。前两部确定起始点和终点。有了这个中风，线条就画上去了。
+一个完美的绿L亮瞎了我的眼。
+<img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214222419071_640.jpg?153x150_130">
+<h3>绘制贝塞尔曲线</h3>
+    <h4>先来一个二维的</h4>
+<pre>
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    ctx.beginPath();
+    ctx.moveTo(20,20);                          //指定起点 
+    ctx.quadraticCurveTo(20,100,200,20);        
+    ctx.stroke();
+    <img style="display: block" src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214222918039_640.jpg?413x226_130">
+    二维的贝塞尔曲线，妥妥的。
+</pre>
+
+  <h4>再来一个二维的</h4>
+  <pre>
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.beginPath();
+ctx.moveTo(20,20);
+ctx.bezierCurveTo(20,100,200,100,200,20);
+ctx.stroke();
+
+<img   style="display: block;"   src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214223305071_640.jpg?422x264_130">
+
+完美！！！
+  </pre>
+
+<h4>画圆</h4>
+<pre>
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,75,50,0,2*Math.PI);   //五个参数 依次为起始X、Y、半径、起始角、结束角。一周弧度是2PI
+ctx.stroke();
+//这样就画出来一个以（100,75）为圆心，半径为50，弧度为一周的一个很圆的圆。
+
+以下是另外一个演示：
+<img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214224520030_640.jpg?438x297_130">
+
+</pre>
+
+<h3>渐变</h3>
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+var grd=ctx.createLinearGradient(0,0,170,0);    //创建线性渐变，开始坐标(0，0),结束坐标（170,0）
+grd.addColorStop(0,"black");    //addColorStop() 方法规定 gradient 对象中的颜色和位置
+grd.addColorStop(1,"white");   
+
+ctx.fillStyle=grd;
+ctx.fillRect(20,20,150,100);
+<img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214225506031_640.jpg?278x146_130">
+</pre>
+
+<a href="http://www.jb51.net/w3school/html5/html5_ref_canvas.htm">canvas画布的知识都在这里</a>
+</body>
+</html>
