@@ -1,93 +1,161 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-	<title>canvas画布</title>
-</head>
-<body>
-<h3>绘制矩形</h3>
-<pre>
-	var c=document.getElementById("myCanvas");    
-	var ctx=c.getContext("2d");    //创建2d的绘制环境。
-	ctx.fillStyle="#0000ff";       //设置填充的颜色为蓝色。
-	ctx.fillRect(20,20,150,100);   //绘制矩形，起始点坐标为(20,20),矩形长度为150，宽度为100.
-    这样就绘制出一个蓝色填充矩形。
-	<img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/1848759122016121422024803_640.jpg?221x140_130">
+	<head>
+		<style type="text/css">
+			pre{font-size:24px;}
+		</style>
+		<meta charset="UTF-8"/>
+		<title>canvas画猫、XML与svg</title>
+	</head>
+	<body>
+		
+		<h3>一、如何用cavas画猫</h3>
+		<pre>
+//首先，创建canvas画布
+&ltcanvas id="canvas" width="800" height="800"&gt
+//以下代码在script中
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext('2d');
+//脑袋下半部分
+ctx.strokeStyle = "#34180C"                   //设置笔触颜色
+ctx.lineWidth="5";                            //线条宽度
+ctx.fillStyle = "#FFFFD9";                    //填充颜色 
+ctx.beginPath();                              //起始路径
+ctx.moveTo(180,300);                          //起始点
+ctx.bezierCurveTo(200,420,490,420,500,290);   //两个控制点，一个结束点
+ctx.fill();                                   //填充区域
+ctx.stroke();                                 //绘制路径
+//脑袋下半部画好了 。 同理画其他贝塞尔曲线。
+ 
+//再画一根胡须，胡须是直线，比较好画
+ctx.lineWidth="4";
+ctx.moveTo(185,265);                          //从这个点
+ctx.lineTo(170,265);                          //到这个点
+ctx.stroke();                                 //闭合，一根胡须就好了 
 
-	var c=document.getElementById("myCanvas");
-    var ctx=c.getContext("2d");
-    ctx.strokeStyle="#0000ff";         //strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式。
-    ctx.strokeRect(20,20,150,100);     //storke:勾勒；绘制；中风。绘制出边框为蓝色的矩形。
-        <img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214220644019_640.jpg?207x136_130">
-</pre>
-
-<h3>绘制直线</h3>
-<pre>
-var c=document.getElementById("myCanvas");
-var ctx=c.getContext("2d");
-ctx.beginPath();           // beginPath() 方法开始一条路径，或重置当前的路径。就是说我要开始画了。
- ctx.moveTo(20,20);        //把路径移动到画布中的指定点(20,20)，不创建线条
-ctx.lineTo(20,100);        //添加一个新点(200,100)，然后在画布中创建从该点到最后指定点的线条
-ctx.lineTo(70,100);
-ctx.strokeStyle="green";   //颜色为绿色。
-ctx.stroke();              //勾勒吧，挥洒吧，中风吧。前两部确定起始点和终点。有了这个中风，线条就画上去了。
-一个完美的绿L亮瞎了我的眼。
-<img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214222419071_640.jpg?153x150_130">
-<h3>绘制贝塞尔曲线</h3>
-    <h4>先来一个二维的</h4>
-<pre>
-    var c=document.getElementById("myCanvas");
-    var ctx=c.getContext("2d");
-    ctx.beginPath();
-    ctx.moveTo(20,20);                          //指定起点 
-    ctx.quadraticCurveTo(20,100,200,20);        
-    ctx.stroke();
-    <img style="display: block" src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214222918039_640.jpg?413x226_130">
-    二维的贝塞尔曲线，妥妥的。
-</pre>
-
-  <h4>再来一个二维的</h4>
-  <pre>
-var c=document.getElementById("myCanvas");
-var ctx=c.getContext("2d");
+//画个圆的，
+//左眼睛亮点
+ctx.fillStyle = "#fff";
 ctx.beginPath();
-ctx.moveTo(20,20);
-ctx.bezierCurveTo(20,100,200,100,200,20);
-ctx.stroke();
+ctx.arc(272,240,4,0,2*Math.PI);
+ctx.closePath();
+ctx.fill();
+//其他的部分可依次画出，主要由贝塞尔曲线，弧度，圆，直线组成，再填充即可。
+来吧，小猫
+<img style="display: block;width: 250px;height: 200px;" src="http://image18.poco.cn/mypoco/myphoto/20161215/19/18487591220161215195642052_640.jpg?750x603_120"/>
+</pre>
 
-<img   style="display: block;"   src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214223305071_640.jpg?422x264_130">
-
-完美！！！
-  </pre>
-
-<h4>画圆</h4>
+<h3>二、canvas载入图像</h3>
+确定旋转中心点为画布中心点旋转得到。
 <pre>
-var c=document.getElementById("myCanvas");
-var ctx=c.getContext("2d");
-ctx.beginPath();
-ctx.arc(100,75,50,0,2*Math.PI);   //五个参数 依次为起始X、Y、半径、起始角、结束角。一周弧度是2PI
-ctx.stroke();
-//这样就画出来一个以（100,75）为圆心，半径为50，弧度为一周的一个很圆的圆。
+	
+<canvas id="canvas" style="border:1px solid #d3d3d3;background:#ffffff;">
+</canvas>
+<br />
+<input type="button" name="" id="left" value="右转" />
+<input type="button" name="" id="right" value="左转" />
+<script>
+var left = document.getElementById("left");
+var right = document.getElementById("right");
+var c = document.getElementById("canvas");
+var ctx = c.getContext("2d");
 
-以下是另外一个演示：
-<img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214224520030_640.jpg?438x297_130">
+var img = new Image();
+ img.onload = function(){
+ 	ctx.drawImage(img,-48,-64, 96,128);
+ }
+img.src = "http://image18.poco.cn/mypoco/myphoto/20161215/20/18487591220161215200354084_640.jpg?96x128_130";
+ctx.translate((c.width/2),c.height/2);
+left.addEventListener("click",turnLeft,false);
+function turnLeft(){
+	ctx.clearRect(-48,-64, 96,128);
+	
+ctx.rotate( 90*Math.PI/180);
+ctx.drawImage(img,-48,-64, 96,128);
+}
 
+right.addEventListener("click",turnRight,false);
+function turnRight(){
+ctx.clearRect(-48,-64, 96,128)
+ctx.rotate( -90*Math.PI/180);
+ctx.drawImage(img,-48,-64, 96,128);
+}
+
+
+</script>
+
+var left = document.getElementById("left");
+var right = document.getElementById("right");
+var c = document.getElementById("canvas");
+var ctx = c.getContext("2d");
+
+var img = new Image();
+ img.onload = function(){
+ 	ctx.drawImage(img,-48,-64, 96,128);
+ }
+img.src = "./img/3.png";
+ctx.translate((c.width/2),c.height/2);
+left.addEventListener("click",turnLeft,false);
+function turnLeft(){
+	ctx.clearRect(-48,-64, 96,128);
+	
+ctx.rotate( 90*Math.PI/180);
+ctx.drawImage(img,-48,-64, 96,128);
+}
+
+right.addEventListener("click",turnRight,false);
+function turnRight(){
+ctx.clearRect(-48,-64, 96,128)
+ctx.rotate( -90*Math.PI/180);
+ctx.drawImage(img,-48,-64, 96,128);
+}
 </pre>
+<h3>三、进度条</h3>
+<div id="box" style="background:gold;"></div>
+<script type="text/javascript">
+		var box = document.getElementById("box");
+		var n = 1;
+		function step(){
+			box.style.width = n+"px";
+			box.innerHTML =  n+"%";
+			n++;
+			if (n <= 100) {
+        requestAnimationFrame(step);
+    }
+		}
+		requestAnimationFrame(step);
+	</script>
+		
+	<img style="display: block;" src="http://image18.poco.cn/mypoco/myphoto/20161215/20/18487591220161215201615081_640.jpg?654x402_120"/>	
+	<h3>四、xml</h3>
+	<img style="display: block;" src="http://image18.poco.cn/mypoco/myphoto/20161215/20/18487591220161215202140020_640.jpg?716x714_120" alt="" />
+	<a href="http://www.w3school.com.cn/xml/xml_intro.asp">XML详细介绍</a>
+	<h3>五、SVG</h3>
+	<img  style="display: block;"  src="http://image18.poco.cn/mypoco/myphoto/20161215/20/18487591220161215203042087_640.jpg?638x167_120"/>
+	<a href="http://www.w3school.com.cn/svg/svg_intro.asp">svg教程</a>
+	
+	
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="200"  version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<circle cx="100" cy="100" r="60" stroke="black"
+stroke-width="2" fill="white"/>
+<circle cx="70" cy="80" r="8" stroke="black"
+stroke-width="2" fill="blue"/>
+<circle cx="130" cy="80" r="8" stroke="black"
+stroke-width="2" fill="blue"/>
 
-<h3>渐变</h3>
+<ellipse cx="100" cy="120" rx="20" ry="10"
+style="fill:purple"/>
 
-var c=document.getElementById("myCanvas");
-var ctx=c.getContext("2d");
+<line x1="57" y1="57" x2="30" y2="30"
+style="stroke:rgb(99,99,99);stroke-width:2"/>
 
-var grd=ctx.createLinearGradient(0,0,170,0);    //创建线性渐变，开始坐标(0，0),结束坐标（170,0）
-grd.addColorStop(0,"black");    //addColorStop() 方法规定 gradient 对象中的颜色和位置
-grd.addColorStop(1,"white");   
+<line x1="142" y1="57" x2="162" y2="32"
+style="stroke:rgb(99,99,99);stroke-width:2"/>
+<line x1="102" y1="40" x2="102" y2="1"
+style="stroke:rgb(99,99,99);stroke-width:2"/>
 
-ctx.fillStyle=grd;
-ctx.fillRect(20,20,150,100);
-<img src="http://image18.poco.cn/mypoco/myphoto/20161214/22/18487591220161214225506031_640.jpg?278x146_130">
-</pre>
-
-<a href="http://www.jb51.net/w3school/html5/html5_ref_canvas.htm">canvas画布的知识都在这里</a>
-</body>
+<img src="http://image18.poco.cn/mypoco/myphoto/20161215/20/18487591220161215203559032_640.jpg?698x604_120"/>
+	</body>
 </html>
