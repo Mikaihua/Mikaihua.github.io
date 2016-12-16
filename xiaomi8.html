@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>总结</title>
+	</head>
+	<meta charset="UTF-8"/>
+	<body>
+	<pre>
+1.alert()属于哪个对象的方法？
+答：window.    alert()全部写出来就是 window.alert();window.省去。
+<br />
+2.Javascript的默认返回值是？
+答 ：undefind。
+<br />
+3.setTimeout()和setinterval()的区别及他们的this的指向。
+答：setTimeout和setInterval的语法相同。它们都有两个参数，一个是将要执行的代码字符串，还有一个是以毫秒为单位的时间间隔，当过了那个时间段之后就将执行那段代码。
+不过这两个函数还是有区别的，setInterval在执行完一次代码之后，经过了那个固定的时间间隔，它还会自动重复执行代码，而setTimeout只执行一次那段代码。
+区别：
+window.setTimeout("function",time)；//设置一个超时对象，只执行一次,无周期 
+window.setInterval("function",time)；//设置一个超时对象，周期＝'交互时间'
+停止定时： 
+window.clearTimeout(对象) 清除已设置的setTimeout对象
+window.clearInterval(对象) 清除已设置的setInterval对象
+This的指向都是window。
+
+4.function test(){
+alert(this)
+}
+test();
+test3 = function(){
+alert(this);
+}
+test3();
+分别弹出什么？为什么
+答：弹出window.object.
+this指向他运行时的环境，而不是他声明是的环境。函数在window中运行。弹出window.object.
+
+5 var a = 1; function test(){
+a++;
+alert(a);
+var a = 2;
+alert(a);}
+
+test();
+上一段函数弹出什么为什么?
+答：第一个弹出NaN
+  第二个弹出 2.
+	</pre>	
+	</body>
+</html>
