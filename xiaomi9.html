@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			pre{background: #ececec;}
+		</style>
+	</head>
+	<body>
+		<h3>一、this的指向问题</h3>
+		<p>1.全局指向Global--window--Bom--Brower Object Model</p>
+		<p>（1）函数直接在全局调用时，this指向Window</p>
+		<p>例如</p>
+		<pre>
+var num = 10;
+function foo(){
+	this.num = 1;
+}
+foo();
+alert(num);
+// 结果是弹出1 在window调用 相当于又声明一个 num = 1；
+		</pre>
+		
+		<p>2、函数指向object</p>
+		<pre>
+//指向 obj、弹出5
+var num = 3 ;
+var obj = {};
+obj.num = 5;
+obj.f = function () {
+alert(this.num);
+}
+obj.f();
+		</pre>
+		<br />
+		<p>3、函数指向返回</p>
+		<pre>
+var num = 10 ;
+ function fun(){
+return function(){
+return this.num ;
+}
+	}
+console.log(fun()());
+//结果是10.
+</pre>
+<br />
+<p>4、标签属性this指向当前标签指向</p>
+<pre>
+	&lt p  id = “p”   &gt 111&lt /p    &gt
+	p.onclick=function(){console.log(this.innertext)}
+	结果是111
+</pre>
+
+<br />
+<p>5、Apply改变this的指向</p>
+<pre>
+	var  o = {num:400}
+	var num = 10;
+	var obj = {};
+	obj.num = 1;
+	obj.f = function(){
+		alert(this.num)
+	}
+	obj.f.apply(); // 弹出10    如果第一个参数为空，函数内部的this指向window
+	obj.f.apply(o); // 弹出400 向 o 添加obj.f的方法。
+</pre>	
+<p>6.prototype</p>
+<pre>
+var o = {};
+var arr = [1,2,3];
+o.push = Array.prototype.push;
+o.push("nihao");
+o.push("hello");
+console.log(o[1]);
+//运行结果是“hello”；
+<img src="http://image18.poco.cn/mypoco/myphoto/20161219/22/18487591220161219221934086_640.jpg?974x511_120"/>
+</pre>
+
+<h3>视频播放</h3>
+<pre>
+		script type="text/javascript"
+		var currentTime = document.getElementById("currentTime");//当前播放位置输入框
+		var allTime = document.getElementById("allTime") ;       //总进度输入框
+		var video = document.getElementById("video");            //视频
+		var playButton = document.getElementById("playButton");  //播放按钮
+		var allt = 	document.getElementById("allt");             //进度条的总长     
+		var current = document.getElementById("current");        //当前播放进度框
+		var btn = document.getElementById("btn");	             //圆形的小球
+		var preLo = document.getElementById("preLo")             //缓存。
+			playButton.addEventListener("click",playVideo);
+</pre>			
+<pre>	          function playVideo(){
+				
+				
+				
+				if(playButton.innerText == "播放"　){   
+					video.play();
+					playButton.innerText = "暂停";
+				}else {
+					video.pause();
+					playButton.innerText = "播放";
+				}  
+				  
+				st = setInterval(function(){
+			allTime.value = Math.ceil(video.duration); 
+			currentTime.value = Math.ceil(video.currentTime) ;
+			
+				},1000); 
+</pre>		
+<pre>
+				st1 = setInterval(function(){
+					current.style.width=video.currentTime/video.duration*1000+"px";
+					btn.style.left = video.currentTime/video.duration*1000+"px";
+					
+					var tRange = video.buffered; 
+				 
+					var tbuffered = tRange.end(tRange.length - 1);
+					var bufferpro  = tbuffered/video.duration*1000;
+					preLo.style.width = bufferpro + "px";
+					  
+				},1000)
+			}   
+		
+	</pre>
+	</body>
+</html>
