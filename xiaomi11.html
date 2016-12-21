@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<h3>消除游戏</h3>
+<pre>
+
+<h4>声明变量</h4>
+	window.onload = init;
+window.onmousemove = mouseMove;
+window.onkeydown = keyDown;
+
+var canvas , ctx,cW,cH;   //画布，画布宽，高；
+
+var bg,board;             //背景，挡板
+ 
+var st;                   //计时器
+
+var boardX ,boardY ,boardW, boardH;     //挡板的X,Y,宽，高
+
+var ball, ballX , ballY;                //小球，X, Y;
+boardX = 350;
+boardY = 700;
+boardW = 150;
+boardH = 20;
+
+
+ballX = 350;
+ballY = 350;
+
+cW = 1000;
+cH = 800;
+
+
+<h4>设置球的初速度</h4>
+var vx , vy;
+/*var cl = Math.ceil(Math.random()*6);
+var bl = Math.ceil(Math.random()*8);*/
+/*console.log(cl);*/ 
+vx = 6;      //水平速度
+vy = 6;      //垂直速度
+
+var bricks = [];    //砖数组
+
+var imgW , imgH;    //砖的宽，高
+imgW = 150;
+imgH = 50;
+
+
+            
+<h4>初始化游戏设置和参数</h4>
+function init(){
+	trace("游戏初始化完毕！");
+	canvas = document.getElementById("canvas");
+	ctx = canvas.getContext("2d");
+	//背景
+	bg = addImg("http://image18.poco.cn/mypoco/myphoto/20161221/22/18487591220161221223519076_640.jpg?1000x800_130");
+	//球
+	bg.style.width = 1000 + "px";
+	bg.style.height = 1000 + "px";
+	ball = addImg("http://image18.poco.cn/mypoco/myphoto/20161221/22/18487591220161221223548053_640.jpg?50x50_130");
+	//挡板
+	board = addImg("http://image18.poco.cn/mypoco/myphoto/20161221/22/18487591220161221223608026_640.jpg?150x20_130");
+	
+	/*var bg = new Image();
+	bg.src = "assets/bg.png";
+	bg.onload = function(){
+		ctx.drawImage(bg,0,0)
+	}*/
+	
+	createBrick();
+	
+	st = setInterval(updateCanvas,1000/60);
+}
+
+
+<h4>生成图片</h4>
+function addImg(_src){
+	var img = new Image();
+	img.src = _src;
+	return img;
+}
+
+<h4>碰撞检测</h4>
+function testObjectHit(x1,y1,w,h,x2,y2){
+	if(x2>x1&& y2 > y1 && x2 < x1 + w && y2 < y1 + h){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+<h4>判断球与挡板的碰撞</h4>
+function ballBoardHit(){   
+	
+	var b = testObjectHit(boardX-50 ,boardY - 50,boardW+50 ,boardH,ballX,ballY);
+	if(b){
+		/*ballY = boardY - 50;*/
+//		vx *= -1;
+		vy *= -1;
+	}
+}
+
+<h4>鼠标移动</h4>
+function mouseMove(e){
+	   boardX = e.clientX - boardW /2;
+	  /* boardY = e.clientY - boardH /2;*/
+}
+
+function keyDown(e){
+	if(e.keyCode == 37){
+		boardX -= 5;
+	}
+	if(e.keyCode == 39){
+		boardX += 5;
+	}
+}
+
+<h4>刷新画布</h4>
+function updateCanvas(){
+	ctx.clearRect(0,0,cW,cH);
+	ctx.drawImage(bg,0,0);
+	ctx.drawImage(board,boardX,boardY);
+	ctx.drawImage(ball,ballX,ballY);
+	ballMove();
+	ballBoardHit();
+	drawBricks();
+	ballBricksHit();
+	shows();
+	  
+}
+
+<h4>砖块与球碰撞检测</h4>
+</pre><pre>
+function ballBricksHit(){
+	var l = bricks.length;
+	for(var i = 0;i<l;i++){
+		var item = bricks[i].item;
+		var b = testObjectHit(bricks[i].x-50,bricks[i].y,item.width+50,item.height,ballX,ballY);
+		if(b){
+			bricks.splice(i,1);
+			vy *= -1;
+			item = null;
+		}
+	}
+}  
+</pre>	
+<h4>生成砖块</h4>
+function createBrick(){
+	for(var i = 0;i<6;i++){
+		for(var j = 0;j<4;j++){
+			var arr = ["http://image18.poco.cn/mypoco/myphoto/20161221/22/18487591220161221223258024_165.jpg?150x50_130",
+			"http://image18.poco.cn/mypoco/myphoto/20161221/22/18487591220161221223316035_640.jpg?150x50_130",
+			"http://image18.poco.cn/mypoco/myphoto/20161221/22/18487591220161221223334050_640.jpg?150x50_130",
+			"http://image18.poco.cn/mypoco/myphoto/20161221/22/18487591220161221223353052_640.jpg?150x50_130",
+			"http://image18.poco.cn/mypoco/myphoto/20161221/22/18487591220161221223418031_640.jpg?150x50_130",
+			"http://image18.poco.cn/mypoco/myphoto/20161221/22/18487591220161221223445088_640.jpg?150x50_130"] 
+			var n = parseInt(Math.random()*5);
+			var item = addImg(arr[n]);
+			var x = i * (imgW  + 10);
+			var y = j * (imgH + 5) + 30;
+			var obj = {item:item,x:x,y:y};
+			bricks.push(obj);
+		}
+	}
+}
+
+<h4>绘制砖块</h4>
+function drawBricks(){
+	var l = bricks.length;
+	for(var i = 0;i<l;i++){
+		var item = bricks[i];
+		ctx.drawImage(item.item,item.x,item.y);
+	}
+}
+
+
+<h4>球移动</h4>
+function ballMove(){
+	ballX += vx;
+	ballY += vy;
+	if(ballX >= cW - ball.width){
+		vx  *= -1;
+		
+	}else if(ballX <= 0){
+		vx  *= -1;
+	}
+	
+	if(ballY <= 0){
+        
+        vy *= -1;
+    }else if(ballY > 700){
+//      trace("Game Over!");
+    }
+    
+}
+
+
+
+
+<h4>简化输出信息</h4>
+function trace(msg){
+	console.log(msg);
+}
+ 
+/*function  shows(){
+	if(ballY>=800){
+		clearInterval(st);
+		alert("nishibaile")
+	}
+	if(bricks.length<=0){
+		clearInterval(st);
+		alert("恭喜你成功了")
+	}
+}*/
+
+</pre>
+
+
+<a href = "xiaomi12.html"><h3>消除游戏点这里</h3></a>
+
+<h3>知识点汇总</h3>
+<pre>
+1、HTML5 Canvas标记 html标记 script 外链脚本
+2、onload方法 ： 当页面加载完成是调用函数
+3、变量声明
+4、console.log()控制台输出方法
+5、函数封装 ： 面向对象的思想之一
+6、getContext():HTML5画布：上下文绘图环境-- 返回绘图对象
+7、Image JavaScript对象
+8、绘图环境绘制图像方法：drawImage()方法
+9、定时器：setInterval
+10、条件判断 if else
+11、逻辑运算符、赋值运算符 -- 运算符
+12、几何 数学知识
+13、程序结构控制：for 循环 
+14、Object对象
+15、数组对象、数组方法Array.splice(索引,删除的数量);
+16、性能优化
+17、逻辑
+</pre>
+</body>
+</html>
