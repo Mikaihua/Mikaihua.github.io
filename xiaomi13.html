@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title></title>
+	</head>
+	<style type="text/css">
+	*body{width:1300px}
+		p{width:800px;margin: auto;}
+		h2,h3,h4,h5{ width: 500px;   text-align: center;margin: auto;margin-top:20px}
+		img{display: block;margin: auto;}
+		pre{text-align: center;}
+	</style>
+	<body>
+		<h2>AJAX 入门</h2>
+		
+		<h3>一、Ajax官方解释</h3>
+		<p>AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），
+			是指一种创建交互式网页应用的网页开发技术。
+             AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。
+              AJAX 是一种用于创建快速动态网页的技术。
+                           通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。
+                           这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</p>
+        <h3>二、三次握手协议</h3>
+        <p>三次握手协议指的是在发送数据的准备阶段，服务器端和客户端之间需要进行三次交互：
+        	第一次握手：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；
+        	第二次握手：服务器收到syn包，必须确认客户的syn（ack=j+1），同时自己也发送一个SYN包
+        	（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；第三次握手：客户端收到服务器的S
+        	YN+ACK包，向服务器发送确认包ACK(ack=k+1)，此包发送完毕，客户端和服务器进入ESTABLISHED
+        	状态，完成三次握手。连接建立后，客户端和服务器就可以开始进行数据传输了。</p>
+        	
+        	<h3>三、XHR创建对象XMLHttpRequest</h3>
+        	<h4>实例：var xhr = new XMLHttpRequest();</h4>
+        	<p>XMLHttpRequest 对象用于在后台与服务器交换数据。这意味着可以在不
+        		这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+        		重新加载整个网页的情况下，对网页的某部分进行更新。</p>
+        		<h5>如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法</h5>
+        		<p>open(method,url,async)<br> (1)打开方式：get和post<br>(2)打开的地址，
+        			一般是一个json文件<br>(3)同步或者异步，true异步，false，同步。</p>
+        		<p>同步和异步:同步是代码按顺序执行，一段代码执行完时，再执行下一段代码。</p>	
+        		<p>异步：代码同时执行。相比同步容易造成程序堵塞。</p>
+        		<p>send() :将请求发到服务器</p>
+        		
+        		<h4>实例:xhr.open("GET", "chengji.json",true);</h4>
+		        <h4>xhr.send();</h4>
+		        <h5>get和post</h5>
+		        <img style="display: block;" src="http://image18.poco.cn/mypoco/myphoto/20161222/19/18487591220161222195048019_640.jpg?534x160_120" alt="" />
+		       <h3> 四 、onreadystatechange,readyState,status</h3> 
+		       <p> XMLHttpRequest 对象的三个重要的属性：onreadystatechange,readyState,status</p>
+		       <p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。
+		       	存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</p>
+		    <img  style="display: block;" src="http://image18.poco.cn/mypoco/myphoto/20161222/19/18487591220161222195923020_640.jpg?598x210_120"/>
+<h5>readyState</h5>
+<pre>
+存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+0: 请求未初始化
+1: 服务器连接已建立
+2: 请求已接收
+3: 请求处理中
+4: 请求已完成，且响应已就绪
+</pre>		
+<h5>Status=200,readyState=4,表示传输成功</h5>
+<h5>Status</h5>
+<img style="display：block"  src="http://image18.poco.cn/mypoco/myphoto/20161222/20/18487591220161222202620036_640.jpg?607x494_120" alt="" />
+
+<h3>五、JSON.parse();</h3>
+<h5>例如： var o = JSON.parse(xhr.responseText);</h5>
+<p>JSON.parse() 方法将一个 JSON字符串解析成一个javascript值。JSON.parse(text[, reviver])，参数、text：
+要被解析成JavaSctipt值的字符串，查看 JSON 对象学习的JSON 语法的说明。
+reviver： 可选
+如果是一个函数，则规定了原始值如何被解析改造，在被返回之前。</p>
+
+<h5>一段完整的程序如下</h5>
+<img  style="display: block;"   src="http://image18.poco.cn/mypoco/myphoto/20161222/20/18487591220161222203750053_640.jpg?629x416_120" alt="" />
+	
+	<a href="xiaomi14.html">点击这里</a>
+	</body>
+</html>
