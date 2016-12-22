@@ -1,0 +1,51 @@
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title></title>
+	</head>
+	<style type="text/css">
+		td,th {text-align: center;}
+	</style>
+
+	<body>
+
+		<table border="1" cellspacing="" cellpadding="" id="table">
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>电话</th>
+				<th>学校</th>
+				<th>院系</th>
+			</tr>
+		</table>
+		<script type="text/javascript">
+			var table = document.getElementById("table");
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(msg) {
+				if(xhr.readyState == 4) {
+					if(xhr.status == 200) {
+						var o = JSON.parse(xhr.responseText);
+						for(var i = 0; i < o.length; i++) {
+							var oo = o[i];
+							var row = table.insertRow(-1);
+							row.insertCell(0).innerHTML = oo.name;
+							row.insertCell(1).innerHTML = oo.age;
+							row.insertCell(2).innerHTML = oo.sex;
+							row.insertCell(3).innerHTML = oo.phoneNumber;
+							row.insertCell(4).innerHTML = oo.university;
+							row.insertCell(5).innerHTML = oo.college;
+						}
+
+					}
+				}
+
+			}
+
+			xhr.open("GET", "chengji.json");
+			xhr.send();
+		</script>
+	</body>
+
+</html>
