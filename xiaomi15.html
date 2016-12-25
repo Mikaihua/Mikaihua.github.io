@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+    *{margin: auto;}
+	img{display: block;margin-top: 15px}
+	p{width: 500px;background: #ececec;border-radius: 5px;margin: auto;padding: 15px}
+	h3{width: 300px}
+</style>
+<body>
+<h3>设计模式和浅拷贝</h3>
+<p>设计模式：设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 <br>毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编写真正工程化；设计模式是软件工程的基石脉络，如同大厦的结构一样。</p>
+<p>四要素： 模式名称、问题、解决方案、效果
+<br>基本模式： 工厂模式、建造者模式、单例模式</p>
+<h3>浅拷贝和深拷贝</h3>
+<p>首先深复制和浅复制只针对像 Object, Array 这样的复杂对象的。简单来说，浅复制只复制一层对象的属性，而深复制则递归复制了所有层级。
+下面是一个浅拷贝的例子</p>
+<img src="http://image18.poco.cn/mypoco/myphoto/20161225/21/18487591220161225212737015_640.jpg?487x220_120">
+<img src="http://image18.poco.cn/mypoco/myphoto/20161225/21/18487591220161225213029035_640.jpg?653x406_120">
+<img src="http://image18.poco.cn/mypoco/myphoto/20161225/21/18487591220161225213051046_640.jpg?609x519_120">
+
+
+<h3>call和apply</h3>
+<p>对于apply和call两者在作用上是相同的，但两者在参数上有区别的。
+对于第一个参数意义都一样，但对第二个参数：
+apply传入的是一个参数数组，也就是将多个参数组合成为一个数组传入，而call则作为call的参数传入（从第二个参数开始）。
+如 func.call(func1,var1,var2,var3)对应的apply写法为：func.apply(func1,[var1,var2,var3])</p>
+</body>
+</html>
