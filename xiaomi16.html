@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<h3>jQuery选择器</h3>
+		<p>jQuery选择器大致可以分为两类，基本选择器和过滤选择器。　　基本选择器又可以分为三种,分别为
+
+			<pre>
+       CSS选择器
+       层级选择器
+       表单域选择器</pre>
+		</p>
+
+		<h4>1、css选择器</h4>
+		<h5>(1)、ID选择器</h5>
+		<p>
+			<pre>
+			  $(document).ready(function(){
+				$("#id").click(function(){
+					$("#li1").toggleClass("cssClass");
+			})
+			})
+			</pre>
+		</p>
+		<h5>(2)、类选择器</h5>
+		<p>
+			<pre>
+				$(document).ready(function(){
+				$("#id").click(function(){
+				$(".li2").toggleClass("cssClass");
+			})
+			})
+			</pre>
+		</p>
+		<h5>(3)、标签选择器</h5>
+		<p>
+			<pre>
+				  $(document).ready(function(){
+				$("#id").click(function(){
+				$("li").toggleClass("cssClass");
+			})
+			})
+			</pre>
+		</p>
+		
+		<h5>(4)、通配选择器</h5>
+		<p>
+			<pre>
+				  $(document).ready(function(){
+				$("#id").click(function(){
+				$("*").toggleClass("cssClass");
+			})
+			})
+			</pre>
+		</p>
+		
+		<h5>(5)组合选择器</h5>
+		<p>
+			<pre>
+				$(document).ready(function(){
+				$("#id").click(function(){
+				$("li,span").toggleClass("cssClass");
+			})
+			})
+			</pre>
+		</p>
+		<h4>2、层级选择器</h4>
+		<h5>(1)、子代选择器</h5>
+		<p>
+			<pre>
+				$(document).ready(function() {
+				$("#id").click(function() {
+					$("ul>li").toggleClass("cssClass");
+				})
+			})
+			</pre>
+		</p>
+		
+		<h5>(2)、后代选择器</h5>
+		<p>
+			<pre>
+				$(document).ready(function() {
+				$("#id").click(function() {
+					$("ul li").toggleClass("cssClass");
+				})
+			});	</pre></p>
+			<h5>(3)、紧邻同辈选择器</h5>
+			<pre>                               //　用于匹配所有紧接在某元素后的第一个元素。</pre>
+			<p><pre>
+				$(document).ready(function() {
+				$("#id").click(function() {
+				$("div+span").toggleClass("cssClass");
+				})
+				//匹配所有紧跟在div后面的span元素
+			</pre></p>
+		<h5>(4)、相邻同辈选择器</h5>
+		<p>
+			<pre>
+	                     用于匹配某元素后面的所有同辈元素。
+　　                          $("prev~slblings")
+　                            $("input~p").css("color","red");
+
+			</pre>
+		</p>
+	<h4>3、表单选择器</h4>	
+	<h5>1、:input选择器</h5>
+	<p>
+		<pre>
+			//  2.3.1 :input选择器用于选择所有input,textareaselect,button元素
+　                          $(document).ready(function() {
+				$("#id").click(function() {
+				$(":input").toggleClass("cssClass");
+				})
+			})
+		</pre>
+	</p>
+	
+	<h5>2、:checkbox选择器</h5>
+	<p>
+		<pre>
+			//  2.3.1 :input选择器用于选择所有input,textareaselect,button元素
+　                          $(document).ready(function() {
+				$("#id").click(function() {
+				$(":checkbox").toggleClass("cssClass");
+				})
+			})
+		</pre>
+	</p>
+	
+	
+	<h5>其他表单选择器用法相似，没啥说的</h5>
+	<h5>3、:password选择器</h5>
+	<h5>4、:radio选择器</h5>
+	<h5>5、:file选择器</h5>
+	<h5>6、:image选择器</h5>
+	<h5>7、:hidden选择器</h5>
+	<h5>8、:buttom选择器</h5>
+	<h5>9、:submit选择器</h5>
+	<h5>10、:reset选择器</h5>
+	
+	<h3>二、过滤选择器</h3>
+	
+	<h4>简单过滤选择器</h4>
+	<h5>(1)、:first选择器</h5>
+	<p>
+		<pre>
+			//过滤选择器:first选择器对当前jQuery集合进行过滤并选择出第一个匹配元素。
+			  $(document).ready(function() {
+				$("#id").click(function() {
+					$("li:last").css("color","brown");
+					$("li:first").css("color","brown");
+				})
+			})
+			
+		</pre>
+	</p>
+	
+	<h5>(2)、:last选择器</h5>
+	<p>
+		<pre>
+			//过滤选择器:last选择器对当前jQuery集合进行过滤并选择最后一个匹配元素。
+			  $(document).ready(function() {
+				$("#id").click(function() {
+					$("li:last").css("color","brown");
+					$("li:last").css("color","brown");
+				})
+			})	
+		</pre>
+	</p>
+	
+	
+	<h5>(3)、:odd选择器   :even选择器</h5>
+	<p>
+		<pre>
+			//用于选择索引为奇数（从0开始计数）的所有元素。
+			  odd偶数    even奇数
+			  $(document).ready(function() {
+				$("#id").click(function() {
+					$("li:odd").css("background","brown");  //所有偶数项
+					$("li:even").css("background","brown"); //所有奇数项
+				})
+			})
+		</pre>
+	</p>
+	<h5>(4)、eq选择器</h5><p>
+		<pre>
+	//eq()选择器   用于从匹配的集合中选择索引等于给定值的元素。 （equal）
+                 $(document).ready(function() {
+				$("#id").click(function() {
+					$("li:eq(1)").css("background","brown");
+					
+				})
+			})
+	  </pre>
+	</p>
+	
+	<h5>(5)、:gt  :lt选择器</h5>
+	      <p><pre>gt  lt 用于从匹配的集合中选择索引大于或小于给定值的所有元素。
+                  $(document).ready(function() {
+				$("#id").click(function() {
+					$("li:gt(1)").css("background","brown");
+					$("li:lt(1)").css("background","brown");
+					
+				})
+			})</pre> 
+	      </p> 
+	      
+<h5>(6)、:not选择器</h5><pre>
+  用于从匹配的集合中去除与给定选择器匹配的元素。
+　　格式：$(":selector1:not(selector2)),其中selector1,selector2为任意有效的选择器,使用:not()选择器时， 将selector1匹配的集合中去掉 selector2匹配的所有元素。
+　　例：$("td:not(:first,:last)").css("background","#FCF")</pre>
+<h5> :header选择器</h5>
+  用于选择所有诸如h1,h2,h3之类的标题元素。
+  格式：$(":header")
+<h5>:animated选择器</h5>
+  <pre>用于选择所有正在执行动画效果的元素。
+  格式：$("selector:animated")</pre>
+
+	
+	
+	
+	
+	
+	</body>
+
+</html>
