@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+	<style type="text/css">
+		body{background: url(http://img05.tooopen.com/images/20150829/tooopen_sy_140533772721.jpg);}
+		pre,p{width: 1000px;padding: 5px;margin: auto;background: #ececec;}
+		h3,h4,h5{width: 1000px;margin: auto;}
+		img{display: block;margin: auto;}
+	</style>
+	<meta charset="UTF-8"/>
+	<body>
+		<h3>jQuery DOM操作<h3>
+		<p>Dom是Document Object Model的缩写，意思是文档对象模型。DOM是一种与浏览器、平台、语言无关的接口，使用该接口可以轻松访问页面中所有的标准组件。DOM操作可以分为三个方面即DOM Core(核心)、HTM-DOM和CSS-DOM。</p>
+		<h4>一、HTML DOM</h4>
+		<h5>(1)、 attr 和 removeAttr</h5>
+		<p>a.attr() 方法设置或返回被选元素的属性值。</p>
+		<p><pre>
+			&ltstyle&gt
+			.style{background:blue}
+			&lt/style&gt
+				$(document).ready(function(){
+		  		$("button").click(function(){
+		  			$("#div2").attr("style"))}
+		  		});
+		  		//为 id 为"div2" 的标签设置样式为.style的样式。
+		  		<p>b.removeAttr() removeAttr() 方法从被选元素中移除属性。</p><pre>                    $("button").click(function(){
+                        $("p").removeAttr("id");
+                         });
+		  		</pre>
+		</pre></p>
+		<h5>(2)、元素节点： html();text();value();</h5>
+		<p>
+			<pre>
+				a、   ("#div").html("<span>好啦好啦</span>");
+		  		b、	("#div2").text("<span>纳尼</span>");  
+		  		c、  ("#name").val("请输入姓名")
+		  		
+		  		// html()中加标签 将其转换成html内容 
+		  		//text()中的标签被解析成字符串全部输出。
+		  		//val()对所有input 标签可设置其value值。
+			</pre>
+		</p>
+		<h5>(3)、文档处理</h5>
+		<p>a、append()和appendTo</p>
+		<p>
+			<pre>
+				append() 方法在被选元素的结尾（仍然在内部）插入指定内容。
+				appendTo()把内容插入到内容的结尾。
+				例如：
+				         $("#div2").append("hahah")     //#div2中增加内容。
+		  			 $("<span>荔枝</span>").appendTo("#div2");    //将内容添加到#div2中。
+			</pre>
+		</p>
+		
+		<p>b、prepend()和prependTo</p>
+		<p>
+			<pre>
+				prepend() 方法在被选元素的开头（仍位于内部）插入指定内容。
+				例如：
+				         $("#div2").prepend("hahah")       //#div2中头部增加内容。
+		  			 $("<span>荔枝</span>").prependTo("#div2");    //将内容添加到#div2中头部。
+			</pre>
+		</p>
+		<p>c、after()和insertAfter</p>
+		<p>append是在当前元素内部最后边插入元素,after是在当前元素后面外插入元素.insertAfter() 方法在被选元素之后插入 HTML 标记或已有的元素。</p>
+		<p>
+			<pre>
+			$("#div2").after("hahahhhah");
+		  	$("nihoa").insertAfter("#div");	
+			</pre>
+		</p>
+		
+		<p>d、before()和insertBefore()</p>
+		<p>
+			<pre>              before() 方法在被选元素前插入指定的内容。
+		insertBefore() 方法在被选元素之前插入 HTML 标记或已有的元素。</pre></p>
+		<p>e、wrap()和unwarp() </p>
+		<p><pre>
+		wrap()方法把每个被选元素放置在指定的 HTML 内容或元素中。
+		unwrap() 方法删除被选元素的父元素。
+		例如：$("p").wrap("&lt;div&gt;&lt;/div&gt");//把p标签放到div标签里面。
+		     $("p").unwrap();//删除p标签的父元素。
+		</pre></p>
+		
+		<p> f、 empty()和remove()</p>
+		<p>
+			<pre>
+				$("#div").remove();  //remove 移除 标签
+		  		$("#div2").empty();  //empty 移除 标签里面的内容
+			</pre>
+		</p>
+		
+		<p>g、clone()</p>
+		<p>
+			<pre>
+				 $("body").append($("p").clone());  //复制p标签 并添加到body元素里面去 。
+			</pre>
+		</p>
+		
+		<h4>css </h4>
+		<h5>a、addClass()</h5>
+		<p>
+			<pre>
+				 此方法向被选元素添加一个或多个类。该方法不会移除已存在的 class 属性，仅仅添加一个或多个 class 属性。
+				.style{background:blue}...
+				$("div").addClass("style") //向div增加名为style的样式。
+			</pre>
+		</p>
+		<h5>b、removeClass()</h5>
+		<p><pre>
+			removeClass() 方法从被选元素移除一个或多个类。注释：如果没有规定参数，则该方法将从被选元素中删除所有类。
+			$("div").removeClass("style") </pre>
+		</p>
+		
+	<h5>c、toggleClass()</h5>
+	<p>
+		<pre>
+			toggleClass()用于对样式进行切换
+			$("div").removeClass("style")  //点击时对div的样式切换。
+		</pre>
+	</p>
+	<h5>d、css()</h5>
+	<p>
+		<pre>
+			css() 方法设置或返回被选元素的一个或多个样式属性。
+			$("div").css("background","blue") ;  
+		</pre>
+	</p>
+	<h5>e、offset() ：offset() 方法返回或设置匹配元素相对于文档的偏移（位置）。</h5>
+	<h5>f、position()</h5><img src="http://image18.poco.cn/mypoco/myphoto/20161227/20/18487591220161227201238026_640.jpg?305x92_120"/>
+	<h5>g、scrollTop()  方法返回或设置匹配元素的滚动条的垂直位置。</h5>
+	<pre>
+	$(".btn1").click(function(){
+         $("div").scrollLeft(100);
+                 });
+	</pre>
+	<h5>h、scrollLeft()</h5>
+	<h5>i、height()</h5>
+	<h5>j、width()</h5>
+	<h5>k、innerHeight()</h5>
+	<h5>l、innerWidth()</h5>
+	<h5>m、outerHeight()</h5>
+	<h5>n、outerWidth()</h5>
+	
+	
+	<p>
+		height()，innerHeight(),outerHeight();<br />
+		height():高度，不包括padding和border 	<br />
+		innerHeight() 为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，但是不包括border。<br />
+		outerHeight() 包括padding，border和选择性的margin。
+	</p>
+	</body>
+</html>
