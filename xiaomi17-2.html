@@ -1,0 +1,98 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+	<style type="text/css">
+		body{background: url(http://img05.tooopen.com/images/20150829/tooopen_sy_140533772721.jpg);}
+		pre,p{width: 1000px;padding: 5px;margin: auto;background: #ececec;border-radius: 10px;}
+		h3,h4,h5{width: 1000px;margin: auto;}
+		img{display: block;margin: auto;
+	</style>
+	<meta charset="UTF-8"/>
+	<body>
+		<button>dianwo </button>
+		<h3> jQuery动画  Animation</h3>
+		<h4>一、显示隐藏：show(),hide(),toggle</h4><br />
+		<pre> 
+			点击按钮切换h4的显示 隐藏
+			$(document).ready(function(){
+				$("button").click(function(){
+						$("h4").hide();    //点击隐藏
+						$("h4").show();    //点击显示
+						$("h4").toggle();  //切换显示隐藏。
+			})
+				});
+				</pre>
+				<br />
+				<h4>二、滑动:slideDown();slideUp();slideToggle();</h4><br />
+				<pre>
+					slideDown() 方法通过使用滑动效果，显示隐藏的被选元素;<br />
+					slideUp() 通过使用滑动效果，隐藏被选元素，如果元素已显示出来的话。<br />
+					slideToggle() 方法通过使用滑动效果（高度变化）来切换元素的可见状态。<br />
+					$("button").click(function(){
+						$("h4").slideDown();       //点击向下滑动显示
+						$("h4").slideUp();         //点击向上滑动隐藏
+						$("h4").slideToggle();     //切换显示隐藏。
+						})
+				</pre>
+				<br />
+				<h4>三、淡入淡出：fadeIn(),fadeOut(),fadeToggle(),fadeTo()</h4><br />
+				<pre>
+					fadeIn(): 方法使用淡入效果来显示被选元素，假如该元素是隐藏的。<br />
+					fadeOut()： 方法使用淡出效果来隐藏被选元素，假如该元素是隐藏的。<br />
+					fadeToggle()：实现元素的淡入淡出。<br />
+					fadeTo():允许渐变为给定的不透明度。<br />
+					例如：$(document).ready(function(){
+				$("button").click(function(){
+					$("h4").fadeOut();
+					$("h4").fadeTo("slow","0.7");
+				  })
+			     })
+				</pre>
+				<br />
+				<h4>四、自定义</h4><br />
+				
+				<h5>a、animate： animate() 方法执行 CSS 属性集的自定义动画。</h5><br />
+				<pre>
+                    $(".btn1").click(function(){
+                    $("#box").animate({height:"300px"});
+                    });
+				</pre><br />
+				<h5>b、stop() 方法停止当前正在运行的动画。</h5><br />
+				<p>
+					<pre>
+                        $("#stop").click(function(){
+                        $("#box").stop();
+                        });
+					</pre>
+				</p><br />
+				<h5>delay() 方法对队列中的下一项的执行设置延迟。</h5><br />
+				<p>
+					<pre>
+                         $("button").click(function(){
+                         $("#div1").delay("slow").fadeIn();
+                         $("#div2").delay("fast").fadeIn();
+                          });
+					</pre>
+				</p>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		<script src="jquery-3.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("button").click(function(){
+					$("h4").fadeOut()
+				})
+			})
+		</script>
+	</body>
+</html> 
