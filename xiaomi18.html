@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	body{background: url(http://pic.90sjimg.com/back_pic/qk/back_origin_pic/00/01/92/b5e1fbde18843c506cd809550e1078de.jpg);}
+	h3,pre{width: 700px;margin: auto;padding: 10px;background: #f2f2f2}
+</style>
+<body>
+<h3>AJAX数据查询</h3>
+<p>
+	<pre>
+		ajax查询
+1.先获取接口文档或者接口数据
+2.获取所有数据
+a.需要给服务器传递参数
+b.跨域：JSONP callback：非XMLhttpRequest对象交互，通过script标签交互
+3.解析从服务器获取到的数据
+a.解析数据过程中：脱离后台交互
+b.显示数据：界面布局及其他
+4.其他功能数据
+a.需要的功能：查询功能（数据过滤，由服务器完成，）
+b.重新规划数据
+	</pre>
+</p>
+<pre>
+	&lt;div id="mask"&gt;
+			&lt;input type="button" name="hide" id="hide" value="×" /&gt;
+			&lt;div id="detail"&gt;
+				姓名：&lt;input type="text" id = "name" /&gt;
+				性别：&lt;input type="tel" name="" id="sex" /&gt;
+				生日：&lt;input type="text" id = "age"  /&gt;
+				学校：&lt;input type="text"  id = "university"/&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div id="content"&gt;
+			&lt;button&gt;按钮&lt;/button&gt;
+	
+		姓名：  &lt;input type="text" id="userName" /&gt;&lt;br /&gt;&lt;br /&gt;
+		&lt;div id="box"&gt;
+		
+
+		&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;script src="jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
+		&lt;script type="text/javascript"&gt;
+			$(document).ready(function() {
+				
+				$("#hide").click(function(){
+					$("#mask").hide("slow")
+				});
+				$("button").click(function() {
+					var _data = {}; 
+					_data.pageNum = 1;
+					_data.pageSize = 20;
+					var $name = $("userName").val();
+					if($name!=""){
+						_data.name = $name;
+					}									
+					$.ajax({
+						type:"get",
+						data:_data,
+						dataType:"JSON",
+						url:"http://www.hemijiaoyu.com/service/searchApply",
+						success:function(msg){ 
+							console.log(msg);
+							var arr = msg.list;
+							console.log(arr);
+							str = "&lt;table  border = '1px' cellspacing = '0'&gt;"
+							for (var i = 0;i&lt;arr.length;i++){
+								str +="&lt;tr id="+i+"&gt;";
+								var obj = arr[i]; 
+								for(var j in obj){        
+									if(j!="homeTel"){
+										str+="&lt;td&gt;"+obj[j]+"&lt;/td&gt;";
+									}
+								} str+="&lt;/tr&gt;";
+								$("#box").html(str) ;
+								
+								$("tr").dblclick(function(e){
+									$("#mask").show("slow");
+					                $("#mask").css("width","100%")
+					                $("#mask").css("height","100%");
+					                var obj = arr[e.currentTarget.id];
+									$("#name").val(obj.name);
+									$("#age").val(obj.birthday);
+									$("#university").val(obj.college);
+									$("#sex").val(obj.sex);
+								})
+							}
+							str+="&lt;/table&gt;"
+						},error:function (error){
+							alert();
+						}
+					}); 
+					
+				}) 
+			})
+		&lt;/script&gt;
+</pre>
+</body>
+</html>
