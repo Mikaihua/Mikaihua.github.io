@@ -1,0 +1,39 @@
+<html>
+	<head><meta charset="UTF-8"/>
+		<title></title>
+	</head>
+	<style type="text/css">
+		img{display: block;}
+		body{background: #FFFAE8;}
+	</style>
+	<body>
+		<h4>简单购物车制作</h4>
+		<img src="http://image18.poco.cn/mypoco/myphoto/20170102/20/18487591220170102205328084_640.jpg?772x394_120"/>
+		<img src="http://image18.poco.cn/mypoco/myphoto/20170102/20/18487591220170102205525070_640.jpg?691x578_120"/>
+		<h5>效果如下</h5>
+		<img src="http://image18.poco.cn/mypoco/myphoto/20170102/20/18487591220170102205007026_640.jpg?915x422_120"/>
+	<p>
+		<pre>
+			<h5>1、AJAX的优缺点</h5>
+优点：减轻服务器的负担,按需取数据,最大程度的减少冗余请求
+局部刷新页面,减少用户心理和实际的等待时间,带来更好的用户体验
+基于xml标准化,并被广泛支持,不需安装插件等
+进一步促进页面和数据的分离
+缺点：AJAX大量的使用了javascript和ajax引擎,这些取决于浏览器的支持.在编写的时候考虑对浏览器的兼容性.
+AJAX只是局部刷新,所以页面的后退按钮是没有用的.
+对流媒体还有移动设备的支持不是太好等
+<h5>二、$()是什么意思</h5>
+入口函数。jquery是由javascript开发的一个框架,并不是一种独立的语言,这种框架其实就是
+javascript的一个函数,函数名就为jquery,由于在框架中把jquery简写成了一个简单的$符号
+所以这个函数的使用格式就变成了$(),自然使用jquey就得加$()或jquery();
+<h5>三、原生js中的this 和jQuery的this的不同</h5>
+我们要记住：this永远指向函数运行时所在的对象！而不是函数被创建时所在的对象。
+this对象是在运行时基于函数的执行环境绑定的，在全局环境中，this等于window。
+$()生成的是什么呢？实际上$()=jquery()，那么也就是说返回的是一个jquery的对象。
+$(this)是jquery对象，能调用jquery的方法，例如click(), keyup()。
+this，表示当前的上下文对象是一个html DOM对象，可以调用html对象所拥有的属性，方法。
+$(this),代表的上下文对象是一个jquery的上下文对象，可以调用jquery的方法和属性值。
+		</pre>
+	</p>
+	</body>
+</html>
