@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    	.container{
+    		max-width: 350px;
+    	}
+    </style>
+</head>
+<body>
+<iframe style="width:0; height:0; margin-top:-10px;" name="submitFrame" src="about:blank"></iframe>
+<form  class=" container form-group loginform"  action = "http://localhost:12337/" method = "post">
+  <h3 style="color: blue;font-weight: bold;">用户登录界面</h3>
+  <div class="form-group">
+  	<label for="">用户名：</label>
+  	<input  class="form-control btn-block" type = 'text' name = "name" placeholder="用户名不超过12位">
+  </div>
+    <div class="form-group">
+        <label for="">密码：</label>
+        <input class="form-control btn-block" type = "password" name = "password" placeholder="密码不超过16位">
+    </div>
+    <input type = "submit" class="btn btn-primary btn-block " value =" 登录"/>
+    <br>
+    <button class="btn btn-primary btn-info btn-block"><a href="regist.html" >点击注册</a></button>
+</form>
+</body>
+</html>
+
+
